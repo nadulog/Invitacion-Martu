@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="theme-color" content="#f3c4d4" />
+    <meta
+      name="description"
+      content="Te invito a celebrar mis XV. Será una noche muy especial y quiero compartirla con vos. ✨"
+    />
+    <link rel="canonical" href="https://bloomdate-martu15.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bloomdate-martu15.netlify.app/" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="Mis XV · Martu" />
+    <meta property="og:title" content="Mis XV · Martu" />
+    <meta
+      property="og:description"
+      content="Te invito a celebrar mis XV. Será una noche muy especial y quiero compartirla con vos. ✨"
+    />
+    <meta property="og:image" content="https://bloomdate-martu15.netlify.app/assets/whatsapp-martu.jpg?v=20261019-7" />
+    <meta property="og:image:secure_url" content="https://bloomdate-martu15.netlify.app/assets/whatsapp-martu.jpg?v=20261019-7" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mis XV de Martu, 2 de enero" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mis XV · Martu" />
+    <meta name="twitter:image" content="https://bloomdate-martu15.netlify.app/assets/whatsapp-martu.jpg?v=20261019-7" />
+    <title>Mis XV · Martu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&display=swap"
+    />
+    <link rel="preload" as="image" href="assets/intro-martu.webp?v=20261019-7" fetchpriority="high" />
+    <link rel="preload" as="image" href="assets/portada.webp?v=20261019-7" />
+    <link rel="stylesheet" href="styles.css?v=20261019-7" />
+  </head>
+  <body class="intro-is-open">
+    <div class="invitation-intro" role="dialog" aria-modal="true" aria-label="Bienvenida a los XV de Martu">
+      <div class="invitation-intro__stage">
+        <img
+          class="invitation-intro__image"
+          src="assets/intro-martu.webp?v=20261019-7"
+          alt="Martu, mis XV, 2 de enero de 2027. ¿Cómo querés entrar?"
+          width="941"
+          height="1672"
+        />
+        <button id="introWithMusic" class="intro-action intro-action--music" type="button">
+          <span class="sr-only">Entrar con música</span>
+        </button>
+        <button id="introWithoutMusic" class="intro-action intro-action--silent" type="button">
+          <span class="sr-only">Entrar sin música</span>
+        </button>
+      </div>
+    </div>
+
+    <main id="invitationMain" class="invitation" tabindex="-1" aria-label="Invitación a los XV años de Martu">
+      <section class="panel panel--cover" style="--panel-bg: url('assets/portada.webp?v=20261019-7')" aria-labelledby="cover-title">
+        <div class="panel__stage">
+          <h1 id="cover-title" class="sr-only">Mis XV, Martu</h1>
+          <img
+            src="assets/portada.webp?v=20261019-7"
+            alt="Martu, mis XV"
+            width="941"
+            height="1672"
+            fetchpriority="high"
+          />
+        </div>
+      </section>
+
+      <section class="panel panel--countdown" style="--panel-bg: url('assets/cuenta-regresiva.webp?v=20261019-7')" aria-labelledby="countdown-title">
+        <div class="panel__stage">
+          <h2 id="countdown-title" class="sr-only">Cuenta regresiva</h2>
+          <img
+            src="assets/cuenta-regresiva.webp?v=20261019-7"
+            alt="Falta poco para mi gran noche"
+            width="941"
+            height="1672"
+            loading="lazy"
+          />
+          <div class="countdown" role="timer" aria-live="off" aria-label="Tiempo restante para la fiesta">
+            <span id="days" class="countdown__value countdown__value--days">00</span>
+            <span id="hours" class="countdown__value countdown__value--hours">00</span>
+            <span id="minutes" class="countdown__value countdown__value--minutes">00</span>
+            <span id="seconds" class="countdown__value countdown__value--seconds">00</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel--date" style="--panel-bg: url('assets/fecha-hora.webp?v=20261019-7')" aria-labelledby="date-title">
+        <div class="panel__stage">
+          <h2 id="date-title" class="sr-only">Fecha y hora</h2>
+          <img
+            src="assets/fecha-hora.webp?v=20261019-7"
+            alt="2 de enero de 2027, de 21:00 a 05:00 horas"
+            width="941"
+            height="1672"
+            loading="lazy"
+          />
+          <button id="calendarButton" class="hotspot hotspot--calendar" type="button">
+            <span class="sr-only">Agregar el evento al calendario</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel panel--map" style="--panel-bg: url('assets/como-llegar.webp?v=20261019-7')" aria-labelledby="map-title">
+        <div class="panel__stage">
+          <h2 id="map-title" class="sr-only">Cómo llegar</h2>
+          <img
+            src="assets/como-llegar.webp?v=20261019-7"
+            alt="Nos encontramos en Jano's Haedo"
+            width="941"
+            height="1672"
+            loading="lazy"
+          />
+          <button id="openMapModal" class="hotspot hotspot--map" type="button">
+            <span class="sr-only">Ver opciones para llegar</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel panel--dress-code" style="--panel-bg: url('assets/dress-code.webp?v=20261019-7')" aria-labelledby="dress-code-title">
+        <div class="panel__stage">
+          <h2 id="dress-code-title" class="sr-only">Código de vestimenta</h2>
+          <img
+            src="assets/dress-code.webp?v=20261019-7"
+            alt="Dress code elegante. Evitar los colores plateado, rosa, bordo y azul, en ninguna de sus tonalidades"
+            width="941"
+            height="1672"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <section class="panel panel--gifts" style="--panel-bg: url('assets/regalos.webp?v=20261019-7')" aria-labelledby="gifts-title">
+        <div class="panel__stage">
+          <h2 id="gifts-title" class="sr-only">Regalos</h2>
+          <img
+            src="assets/regalos.webp?v=20261019-7"
+            alt="Tu presencia es lo más importante. Si querés hacerme un regalo, ver más"
+            width="941"
+            height="1672"
+            loading="lazy"
+          />
+          <button id="openGiftsModal" class="hotspot hotspot--gifts" type="button">
+            <span class="sr-only">Ver datos para regalo</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel panel--photo-bw" style="--panel-bg: url('assets/foto-martu-2.webp?v=20261019-7')" aria-label="Foto de Martu">
+        <div class="panel__stage">
+          <img
+            src="assets/foto-martu-2.webp?v=20261019-7"
+            alt="Martu en sepia rosado, sobre un puente"
+            width="960"
+            height="1488"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <section class="panel panel--confirmation" style="--panel-bg: url('assets/confirmacion.webp?v=20261019-7')" aria-labelledby="confirmation-title">
+        <div class="panel__stage">
+          <h2 id="confirmation-title" class="sr-only">Confirmación de asistencia</h2>
+          <img
+            src="assets/confirmacion.webp?v=20261019-7"
+            alt="¿Venís? Quiero festejar esta noche con vos. Confirmar asistencia antes del 10 de diciembre"
+            width="941"
+            height="1672"
+            loading="lazy"
+          />
+          <a
+            class="hotspot hotspot--confirmation"
+            href="https://bloomdate-rsvp.netlify.app/r/martu-15"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span class="sr-only">Confirmar asistencia</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="panel panel--photo" style="--panel-bg: url('assets/foto-martu.webp?v=20261019-7')" aria-labelledby="photo-title">
+        <div class="panel__stage">
+          <h2 id="photo-title" class="sr-only">Te espero</h2>
+          <img
+            src="assets/foto-martu.webp?v=20261019-7"
+            alt="Te espero, Martu"
+            width="941"
+            height="1672"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <footer class="panel panel--footer" style="--panel-bg: url('assets/footer-bloomdate.webp?v=20261019-7')" aria-label="BloomDate y redes sociales">
+        <div class="panel__stage">
+          <img
+            src="assets/footer-bloomdate.webp?v=20261019-7"
+            alt="Hecho con amor por BloomDate. WhatsApp, Instagram y sitio web"
+            width="1672"
+            height="941"
+            loading="lazy"
+          />
+          <a
+            class="footer-link footer-link--whatsapp"
+            href="https://wa.me/541140436324"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Contactar a BloomDate por WhatsApp"
+          ></a>
+          <a
+            class="footer-link footer-link--instagram"
+            href="https://www.instagram.com/bloomdate.invitaciones/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Ver BloomDate Invitaciones en Instagram"
+          ></a>
+          <a
+            class="footer-link footer-link--website"
+            href="https://bloomdate-site.netlify.app/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Visitar el sitio web de BloomDate"
+          ></a>
+        </div>
+      </footer>
+    </main>
+
+    <dialog id="mapModal" class="image-modal image-modal--map" aria-label="Opciones para llegar a Jano's Haedo">
+      <div class="modal-art">
+        <img
+          src="assets/modal-ubicacion.webp?v=20261019-7"
+          alt="Jano's Haedo, Av. Pres. Perón 1742, Haedo, Morón, Buenos Aires"
+          width="941"
+          height="1672"
+        />
+        <a
+          class="modal-action modal-action--maps"
+          href="https://maps.app.goo.gl/yHP7qc3qRXJ5zpFH7"
+          target="_blank"
+          rel="noreferrer"
+        ><span class="sr-only">Abrir con Google Maps</span></a>
+        <a
+          class="modal-action modal-action--waze"
+          href="https://waze.com/ul?q=Jano%27s%20Haedo%2C%20Av.%20Pres.%20Per%C3%B3n%201742%2C%20Haedo&amp;navigate=yes"
+          target="_blank"
+          rel="noreferrer"
+        ><span class="sr-only">Abrir con Waze</span></a>
+        <button
+          class="modal-action modal-action--copy-address"
+          type="button"
+          data-copy="Jano's Haedo, Av. Pres. Perón 1742, Haedo, Morón, Buenos Aires"
+          data-copy-message="Dirección copiada"
+        ><span class="sr-only">Copiar dirección</span></button>
+        <button class="modal-action modal-action--close-map" type="button" data-close-modal>
+          <span class="sr-only">Cerrar</span>
+        </button>
+        <p class="modal-toast" aria-live="polite"></p>
+      </div>
+    </dialog>
+
+    <dialog id="giftsModal" class="image-modal image-modal--gifts" aria-label="Datos para regalo">
+      <div class="modal-art">
+        <img
+          src="assets/modal-regalos.webp?v=20261019-7"
+          alt="Datos para tu regalo: alias martinaperinat, titular Martina Perinat"
+          width="1024"
+          height="1536"
+        />
+        <button
+          class="modal-action modal-action--copy-alias"
+          type="button"
+          data-copy="martinaperinat"
+          data-copy-message="Alias copiado"
+        ><span class="sr-only">Copiar alias martinaperinat</span></button>
+        <button class="modal-action modal-action--close-gifts" type="button" data-close-modal>
+          <span class="sr-only">Cerrar</span>
+        </button>
+        <p class="modal-toast" aria-live="polite"></p>
+      </div>
+    </dialog>
+
+    <button
+      id="audioToggle"
+      class="audio-toggle"
+      type="button"
+      aria-label="Reproducir música"
+      aria-pressed="false"
+      hidden
+    >
+      <span class="audio-toggle__note" aria-hidden="true">♫</span>
+      <span class="audio-toggle__state" aria-hidden="true"></span>
+    </button>
+    <audio id="invitationAudio" src="assets/musica.mp3?v=20261019-7" loop preload="metadata"></audio>
+
+    <script src="script.js?v=20261019-7"></script>
+    <script>
+      (function () {
+        var token = new URLSearchParams(window.location.search).get('invite');
+        if (!token) return;
+        document.querySelectorAll('a[href*="/r/"]').forEach(function (a) {
+          var url = new URL(a.href);
+          url.searchParams.set('invite', token);
+          a.href = url.toString();
+        });
+      })();
+    </script>
+  </body>
+</html>

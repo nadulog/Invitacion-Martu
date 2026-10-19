@@ -1,0 +1,605 @@
+:root {
+  color-scheme: light;
+  font-family: "Bodoni Moda", Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+  background: #f3c4d4;
+  color: #111;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background:
+    linear-gradient(90deg, rgba(120, 30, 70, 0.12), transparent 20% 80%, rgba(120, 30, 70, 0.12)),
+    #f3c4d4;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.invitation {
+  width: min(100%, 590px);
+  margin-inline: auto;
+  overflow: hidden;
+  background: #fdeff3;
+  box-shadow: 0 0 42px rgba(90, 20, 50, 0.22);
+  container-type: inline-size;
+  --blend: 14cqw;
+}
+
+/* Cada sección ocupa al menos toda la pantalla. La pieza se centra y el espacio que
+   sobra arriba y abajo se completa con la misma imagen desenfocada. */
+.panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #fdeff3;
+  container-type: inline-size;
+}
+
+/* Relleno: se estira la franja superior e inferior de la propia pieza. */
+.panel::before,
+.panel::after {
+  position: absolute;
+  left: -12%;
+  width: 124%;
+  height: 54%;
+  background-image: var(--panel-bg);
+  background-repeat: no-repeat;
+  background-size: 100% 1500%;
+  filter: blur(32px);
+  content: "";
+}
+
+.panel::before {
+  top: -2%;
+  background-position: center top;
+}
+
+.panel::after {
+  bottom: -2%;
+  background-position: center bottom;
+}
+
+.panel__stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 941 / 1672;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+.panel--cover .panel__stage {
+  -webkit-mask-image: linear-gradient(to bottom, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 93%, transparent 100%);
+}
+
+.panel--footer .panel__stage {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* Fundido entre secciones: cada imagen se superpone a la anterior y entra con un
+   degradé, así no se ven las líneas de corte entre piezas. */
+.panel + .panel {
+  margin-top: calc(var(--blend) * -1);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--blend));
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--blend));
+  pointer-events: none;
+}
+
+.panel + .panel a,
+.panel + .panel button {
+  pointer-events: auto;
+}
+
+.panel__stage > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.panel--footer {
+  min-height: 0;
+}
+
+.panel--footer .panel__stage {
+  aspect-ratio: 1672 / 941;
+}
+
+.panel--photo-bw .panel__stage {
+  aspect-ratio: 960 / 1488;
+}
+
+.footer-link {
+  position: absolute;
+  z-index: 2;
+  top: 54.8%;
+  width: 6.9%;
+  height: 12.3%;
+}
+
+.footer-link--whatsapp {
+  left: 36.7%;
+}
+
+.footer-link--instagram {
+  left: 46.6%;
+}
+
+.footer-link--website {
+  left: 56.5%;
+}
+
+.footer-link:focus-visible {
+  outline: 3px solid #b0305f;
+  outline-offset: 2px;
+}
+
+/* Cuenta regresiva: tapa los "00" impresos y escribe los valores reales encima. */
+.countdown {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+}
+
+.countdown__value {
+  position: absolute;
+  top: 65.9%;
+  display: grid;
+  width: 16.6%;
+  height: 6.6%;
+  place-items: center;
+  background: #fdeff3;
+  box-shadow: 0 0 0.6cqw 0.6cqw #fdeff3;
+  color: #0c0c0c;
+  font-size: 13cqw;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  /* Estira los dígitos para igualar la tipografía condensada del diseño. */
+  transform: scaleY(1.25);
+}
+
+
+.countdown__value--days {
+  left: 7.2%;
+}
+
+.countdown__value--hours {
+  left: 30.4%;
+}
+
+.countdown__value--minutes {
+  left: 53.4%;
+}
+
+.countdown__value--seconds {
+  left: 76.6%;
+}
+
+.hotspot {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hotspot::after {
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-radius: inherit;
+  content: "";
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.hotspot:hover::after {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(176, 48, 95, 0.25);
+}
+
+.hotspot:focus-visible {
+  outline: 3px solid #b0305f;
+  outline-offset: 3px;
+}
+
+.hotspot--calendar {
+  top: 88.6%;
+  left: 7.1%;
+  width: 52.6%;
+  height: 5%;
+}
+
+.hotspot--map {
+  top: 70.7%;
+  left: 6.8%;
+  width: 41.8%;
+  height: 5.9%;
+}
+
+.hotspot--gifts {
+  top: 85.7%;
+  left: 12.2%;
+  width: 75.8%;
+  height: 6.7%;
+}
+
+
+
+
+.hotspot--confirmation {
+  top: 62.6%;
+  left: 21.8%;
+  width: 57%;
+  height: 5.3%;
+}
+
+
+.image-modal {
+  width: fit-content;
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.image-modal::backdrop {
+  background: rgb(60 20 38 / 70%);
+  backdrop-filter: blur(3px);
+}
+
+.modal-art {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2.5%;
+  box-shadow: 0 16px 48px rgb(50 15 30 / 38%);
+}
+
+.image-modal--map .modal-art {
+  width: min(92vw, 50.6vh, 460px);
+  width: min(92vw, 50.6dvh, 460px);
+}
+
+.image-modal--gifts .modal-art {
+  width: min(94vw, 60vh, 520px);
+  width: min(94vw, 60dvh, 520px);
+}
+
+.modal-art > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.modal-action {
+  position: absolute;
+  display: block;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.modal-action:focus-visible {
+  outline: 3px solid #b0305f;
+  outline-offset: 2px;
+  background: rgb(255 255 255 / 14%);
+}
+
+.modal-action--maps,
+.modal-action--waze,
+.modal-action--copy-address {
+  left: 8.6%;
+  width: 63.7%;
+  height: 6%;
+}
+
+.modal-action--maps {
+  top: 50.2%;
+}
+
+.modal-action--waze {
+  top: 57.8%;
+}
+
+.modal-action--copy-address {
+  top: 65.4%;
+}
+
+.modal-action--close-map {
+  top: 6.3%;
+  left: 84.1%;
+  width: 10.6%;
+  height: 6%;
+  border-radius: 50%;
+}
+
+.modal-action--copy-alias {
+  top: 37.4%;
+  left: 58.6%;
+  width: 26.5%;
+  height: 4.8%;
+  border-radius: 999px;
+}
+
+.modal-action--close-gifts {
+  top: 14%;
+  left: 81%;
+  width: 7.3%;
+  height: 5.1%;
+  border-radius: 50%;
+}
+
+.modal-toast {
+  position: absolute;
+  z-index: 2;
+  top: 4%;
+  left: 50%;
+  max-width: 80%;
+  margin: 0;
+  padding: 0.55em 1em;
+  border-radius: 999px;
+  background: rgb(176 48 95 / 92%);
+  color: #fff7fa;
+  font-family: Arial, sans-serif;
+  font-size: clamp(0.8rem, 3.2vw, 1rem);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.modal-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hotspot::after,
+  .modal-toast {
+    transition: none;
+  }
+}
+
+/* Botón flotante de música. */
+.audio-toggle {
+  position: fixed;
+  z-index: 850;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  display: grid;
+  width: 56px;
+  aspect-ratio: 1;
+  padding: 0;
+  place-items: center;
+  border: 1.5px solid #f472a3;
+  border-radius: 50%;
+  background: rgb(14 12 13 / 92%);
+  box-shadow: 0 5px 16px rgb(90 20 50 / 32%);
+  color: #f9a8c8;
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.audio-toggle[hidden] {
+  display: none;
+}
+
+.audio-toggle:hover {
+  transform: scale(1.06);
+}
+
+.audio-toggle:focus-visible {
+  outline: 3px solid #f472a3;
+  outline-offset: 3px;
+}
+
+.audio-toggle__note {
+  font: 700 1.7rem/1 Georgia, serif;
+  transform: translate(-2px, -1px);
+}
+
+.audio-toggle.is-playing .audio-toggle__note {
+  animation: audio-note-pulse 1.15s ease-in-out infinite;
+}
+
+.audio-toggle__state {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #0e0c0d;
+  border-radius: 50%;
+  background: #f472a3;
+}
+
+/* Triángulo de play cuando está pausada. */
+.audio-toggle__state::before {
+  position: absolute;
+  top: 3.5px;
+  left: 5px;
+  width: 0;
+  height: 0;
+  border-top: 3.5px solid transparent;
+  border-bottom: 3.5px solid transparent;
+  border-left: 5px solid #0e0c0d;
+  content: "";
+}
+
+/* Dos barras de pausa cuando suena. */
+.audio-toggle.is-playing .audio-toggle__state::before {
+  top: 3.5px;
+  left: 3.5px;
+  width: 6px;
+  height: 7px;
+  border: 0;
+  background: linear-gradient(90deg, #0e0c0d 0 2px, transparent 2px 4px, #0e0c0d 4px 6px);
+}
+
+@keyframes audio-note-pulse {
+  0%, 100% { transform: translate(-2px, -1px) scale(1); }
+  50% { transform: translate(-2px, -1px) scale(1.13); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audio-toggle.is-playing .audio-toggle__note {
+    animation: none;
+  }
+}
+
+/* Intro: pantalla de bienvenida para entrar con o sin música. */
+body.intro-is-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.invitation-intro {
+  position: fixed;
+  z-index: 900;
+  inset: 0;
+  display: grid;
+  height: 100vh;
+  height: 100dvh;
+  place-items: center;
+  overflow: hidden;
+  background: #0b090a;
+}
+
+.invitation-intro__stage {
+  position: relative;
+  width: min(100vw, 56.28vh);
+  width: min(100vw, 56.28dvh);
+  aspect-ratio: 941 / 1672;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgb(244 114 163 / 18%);
+}
+
+.invitation-intro__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+
+.intro-action {
+  position: absolute;
+  z-index: 3;
+  left: 15.9%;
+  width: 68.2%;
+  height: 6.4%;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.intro-action--music {
+  top: 66.35%;
+}
+
+.intro-action--silent {
+  top: 74.45%;
+}
+
+.intro-action:hover {
+  background: rgb(255 255 255 / 10%);
+}
+
+.intro-action:focus-visible {
+  outline: 3px solid #f472a3;
+  outline-offset: 3px;
+}
+
+.intro-action:disabled {
+  cursor: default;
+}
+
+.invitation-intro.is-leaving {
+  animation: intro-leave 900ms ease forwards;
+}
+
+.invitation-intro.is-leaving .invitation-intro__stage {
+  animation: intro-stage-leave 900ms ease forwards;
+}
+
+@keyframes intro-leave {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes intro-stage-leave {
+  to {
+    transform: scale(1.06);
+  }
+}
+
+body.intro-is-open .audio-toggle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-intro.is-leaving {
+    animation-duration: 250ms;
+  }
+
+  .invitation-intro.is-leaving .invitation-intro__stage {
+    animation: none;
+  }
+}
